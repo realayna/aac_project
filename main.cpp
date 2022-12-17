@@ -25,7 +25,11 @@ int main()
     {
 
         int *arr = new int[len];
-        int *arr_q = new int[len];
+        int *arr_i = new int[len]; //insertion
+        int *arr_q = new int[len]; //array for quicksort
+        //int *arr_m = new int[len]; //merge
+        //int *arr_h = new int[len]; //heap
+
         nanoseconds s_quick(0);
         nanoseconds quick(0);
         nanoseconds heap(0);
@@ -41,16 +45,17 @@ int main()
                 arr[i] = dist(gen);
             }
 
-            std::copy(arr, arr + len, arr_q); // copying array for otther sorts
+            std::copy(arr, arr + len, arr_i); // copying array for otther sorts
+            std::copy(arr, arr + len, arr_q); 
 
             auto begin = steady_clock::now();
-            insert_sort(arr, len);
+            insert_sort(arr_i, len);
             auto end = steady_clock::now();
             total_i += end - begin;
 
-            std::sort(arr, arr + len);
+            std::sort(arr_i, arr_i + len);
             auto begin_i = steady_clock::now();
-            insert_sort(arr, len);
+            insert_sort(arr_i, len);
             auto end_i = steady_clock::now();
             ins_s += end_i - begin_i;
 
@@ -74,6 +79,9 @@ int main()
            <<s_quick.count()/times<<std::endl;
 
         delete[] arr;
+        delete [ ]arr_i;
+        delete [ ]arr_q;
+
     }
 
     return 0;
