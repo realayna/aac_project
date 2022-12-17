@@ -20,14 +20,14 @@ int main()
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::cout << "size insertion_sort sorted_insertion_sort quick_sort sorted_quicksort\n";
+    std::cout << "size insertion_sort sorted_insertion_sort quick_sort sorted_quicksort mergesort\n";
     for (int len = step; len < max_size; len += step)
     {
 
         int *arr = new int[len];
         int *arr_i = new int[len]; //insertion
         int *arr_q = new int[len]; //array for quicksort
-        //int *arr_m = new int[len]; //merge
+        int *arr_m = new int[len]; //merge
         //int *arr_h = new int[len]; //heap
 
         nanoseconds s_quick(0);
@@ -69,18 +69,25 @@ int main()
             quicksort(arr_q, 0, len - 1);
             auto end_qs = steady_clock::now();
             s_quick += end_qs - begin_qs;
+
+            
+            auto begin_m = steady_clock::now();
+            quicksort(arr_q, 0, len - 1);
+            auto end_m = steady_clock::now();
+            merge += end_m - begin_m;
         }
         std::cout
-            << len << " "
-
-            << total_i.count() / times << " "
+        << len << " "
+          << total_i.count() / times << " "
            <<  ins_s.count() / times << " "
            << quick.count() / times << " "
-           <<s_quick.count()/times<<std::endl;
+           <<s_quick.count()/times<<" "
+           <<merge.count()/times<<std::endl;
 
         delete[] arr;
         delete [ ]arr_i;
         delete [ ]arr_q;
+        delete [] arr_m;
 
     }
 
