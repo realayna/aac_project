@@ -13,7 +13,7 @@ int main()
     using std::chrono::nanoseconds;
     using std::chrono::steady_clock;
 
-    constexpr int max_size = 5000;
+    constexpr int max_size = 10000;
     constexpr int step = 100;
     constexpr int times = 100;
     std::uniform_int_distribution<int> dist(-max_size, max_size);
@@ -47,12 +47,13 @@ int main()
 
             std::copy(arr, arr + len, arr_i); // copying array for otther sorts
             std::copy(arr, arr + len, arr_q); 
-            std::copy(arr, arr + len, arr_m);
-            std::copy(arr, arr + len, arr_h);  
+            std::copy(arr, arr + len, arr_m); 
+            std::copy(arr, arr + len, arr_h); 
 
             auto begin = steady_clock::now();
             insert_sort(arr_i, len);
             auto end = steady_clock::now();
+			assert(std::is_sorted(arr_i, arr_i+len));
             total_i += end - begin;
 
             // std::sort(arr_i, arr_i + len);
@@ -64,6 +65,7 @@ int main()
             auto begin_q = steady_clock::now();
             quicksort(arr_q, 0, len - 1);
             auto end_q = steady_clock::now();
+			assert(std::is_sorted(arr_q, arr_q+len));
             quick += end_q - begin_q;
 
             // std::sort(arr_q, arr_q + len);
@@ -76,11 +78,13 @@ int main()
             auto begin_m = steady_clock::now();
             mergeSort(arr_m, 0, len - 1);
             auto end_m = steady_clock::now();
+			assert(std::is_sorted(arr_m, arr_m+len));
             merge += end_m - begin_m;
 
             auto begin_h = steady_clock::now();
-            heapsort(arr_h, len - 1 );
+            heapsort(arr_h, len);
             auto end_h = steady_clock::now();
+			assert(std::is_sorted(arr_h, arr_h+len));
             heap += end_h - begin_h;
         }
         std::cout

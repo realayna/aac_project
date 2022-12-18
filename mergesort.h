@@ -33,6 +33,15 @@ void merge(int *arr, int l, int mid, int r)
      }
      k++;
 
+   }
+    while (i < left)
+    {
+        arr[k]=larr[i];
+        i++;
+        k++;
+
+    }
+
     while (j < right)
     {
         arr[k]=rarr[j];
@@ -41,7 +50,8 @@ void merge(int *arr, int l, int mid, int r)
 
     }
 
-   }
+   delete []larr;
+   delete []rarr;
 
 }
 

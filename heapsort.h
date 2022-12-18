@@ -8,7 +8,7 @@ void heapify (int*arr, int n, int m)
     int r = 2*m + 2; //right
 
 
-    if (l < n && arr[l] < arr[max])
+    if (l < n && arr[l] > arr[max])
         max = l;
     if (r < n && arr[r] > arr[max])
         max = r;
