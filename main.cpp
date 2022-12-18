@@ -13,7 +13,7 @@ int main()
     using std::chrono::nanoseconds;
     using std::chrono::steady_clock;
 
-    constexpr int max_size = 15000;
+    constexpr int max_size = 10000;
     constexpr int step = 100;
     constexpr int times = 100;
     std::uniform_int_distribution<int> dist(-max_size, max_size);
