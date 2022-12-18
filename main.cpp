@@ -20,7 +20,7 @@ int main()
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::cout << "size insertion_sort sorted_insertion_sort quick_sort sorted_quicksort mergesort heapsort\n";
+    std::cout << "size insertion_sort  quick_sort  mergesort heapsort\n";
     for (int len = step; len < max_size; len += step)
     {
 
@@ -53,22 +53,22 @@ int main()
             auto end = steady_clock::now();
             total_i += end - begin;
 
-            std::sort(arr_i, arr_i + len);
-            auto begin_i = steady_clock::now();
-            insert_sort(arr_i, len);
-            auto end_i = steady_clock::now();
-            ins_s += end_i - begin_i;
+            // std::sort(arr_i, arr_i + len);
+            // auto begin_i = steady_clock::now();
+            // insert_sort(arr_i, len);
+            // auto end_i = steady_clock::now();
+            // ins_s += end_i - begin_i;
 
             auto begin_q = steady_clock::now();
             quicksort(arr_q, 0, len - 1);
             auto end_q = steady_clock::now();
             quick += end_q - begin_q;
 
-            std::sort(arr_q, arr_q + len);
-            auto begin_qs = steady_clock::now();
-            quicksort(arr_q, 0, len - 1);
-            auto end_qs = steady_clock::now();
-            s_quick += end_qs - begin_qs;
+            // std::sort(arr_q, arr_q + len);
+            // auto begin_qs = steady_clock::now();
+            // quicksort(arr_q, 0, len - 1);
+            // auto end_qs = steady_clock::now();
+            // s_quick += end_qs - begin_qs;
 
             
             auto begin_m = steady_clock::now();
@@ -84,9 +84,9 @@ int main()
         std::cout
            << len << " "
            << total_i.count() / times << " "
-           <<  ins_s.count() / times << " "
+           //<<  ins_s.count() / times << " "
            << quick.count() / times << " "
-           <<s_quick.count()/times<<" "
+          // <<s_quick.count()/times<<" "
            <<merge.count()/times<<" "
            <<heap.count()/times<<std::endl;
 
