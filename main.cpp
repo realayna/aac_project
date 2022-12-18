@@ -30,12 +30,12 @@ int main()
         int *arr_m = new int[len]; //merge
         int *arr_h = new int[len]; //heap
 
-        nanoseconds s_quick(0);
+        //nanoseconds s_quick(0);
         nanoseconds quick(0);
         nanoseconds heap(0);
         nanoseconds merge(0);
         nanoseconds total_i(0);
-        nanoseconds ins_s(0);
+        //nanoseconds ins_s(0);
         
 
         for (int i = 0; i < times; i++)
