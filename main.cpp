@@ -13,7 +13,7 @@ int main()
     using std::chrono::nanoseconds;
     using std::chrono::steady_clock;
 
-    constexpr int max_size = 10000;
+    constexpr int max_size = 5000;
     constexpr int step = 100;
     constexpr int times = 100;
     std::uniform_int_distribution<int> dist(-max_size, max_size);
@@ -47,6 +47,8 @@ int main()
 
             std::copy(arr, arr + len, arr_i); // copying array for otther sorts
             std::copy(arr, arr + len, arr_q); 
+            std::copy(arr, arr + len, arr_m);
+            std::copy(arr, arr + len, arr_h);  
 
             auto begin = steady_clock::now();
             insert_sort(arr_i, len);
