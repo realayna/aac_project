@@ -72,7 +72,7 @@ int main()
 
             
             auto begin_m = steady_clock::now();
-            quicksort(arr_m, 0, len - 1);
+            mergeSort(arr_m, 0, len - 1);
             auto end_m = steady_clock::now();
             merge += end_m - begin_m;
         }
