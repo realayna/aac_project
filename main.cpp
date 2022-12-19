@@ -13,14 +13,14 @@ int main()
     using std::chrono::nanoseconds;
     using std::chrono::steady_clock;
 
-    constexpr int max_size = 10000;
-    constexpr int step = 100;
+    constexpr int max_size = 100;
+    constexpr int step = 5;
     constexpr int times = 100;
     std::uniform_int_distribution<int> dist(-max_size, max_size);
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::cout << "size insertion_sort  quick_sort  mergesort heapsort\n";
+    std::cout << "size insertionsort  quicksort  mergesort heapsort\n";
     for (int len = step; len < max_size; len += step)
     {
 
