@@ -20,7 +20,7 @@ int main()
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::cout << "size insertion_sort  quick_sort  mergesort heapsort\n";
+    std::cout << "size insertionsort  quicksort  mergesort heapsort\n";
     for (int len = step; len < max_size; len += step)
     {
 
