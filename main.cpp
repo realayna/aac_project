@@ -7,20 +7,21 @@
 #include "mergesort.h"
 #include "quick.h"
 #include "heapsort.h"
+#include "hybrid.h"
 
 int main()
 {
     using std::chrono::nanoseconds;
     using std::chrono::steady_clock;
 
-    constexpr int max_size = 100;
-    constexpr int step = 5;
+    constexpr int max_size = 10000;
+    constexpr int step = 100;
     constexpr int times = 100;
     std::uniform_int_distribution<int> dist(-max_size, max_size);
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::cout << "size insertionsort  quicksort  mergesort heapsort\n";
+    std::cout << "size insertionsort  quicksort  mergesort heapsort hybrid\n";
     for (int len = step; len < max_size; len += step)
     {
 
@@ -29,12 +30,14 @@ int main()
         int *arr_q = new int[len]; //array for quicksort
         int *arr_m = new int[len]; //merge
         int *arr_h = new int[len]; //heap
+        int *arr_b = new int [len]; //hybrid
 
         //nanoseconds s_quick(0);
         nanoseconds quick(0);
         nanoseconds heap(0);
         nanoseconds merge(0);
         nanoseconds total_i(0);
+        nanoseconds hybrid(0);
         //nanoseconds ins_s(0);
         
 
@@ -49,9 +52,10 @@ int main()
             std::copy(arr, arr + len, arr_q); 
             std::copy(arr, arr + len, arr_m); 
             std::copy(arr, arr + len, arr_h); 
+            std::copy(arr, arr + len, arr_b); 
 
             auto begin = steady_clock::now();
-            insert_sort(arr_i, len);
+            insert_sort(arr_i, len - 1);
             auto end = steady_clock::now();
 			assert(std::is_sorted(arr_i, arr_i+len));
             total_i += end - begin;
@@ -86,6 +90,13 @@ int main()
             auto end_h = steady_clock::now();
 			assert(std::is_sorted(arr_h, arr_h+len));
             heap += end_h - begin_h;
+
+            auto begin_b = steady_clock::now();
+            hybridsort(arr_b, 0, len - 1);
+            auto end_b = steady_clock::now();
+			assert(std::is_sorted(arr_b, arr_b+len));
+            hybrid += end_b - begin_b;
+
         }
         std::cout
            << len << " "
@@ -94,12 +105,15 @@ int main()
            << quick.count() / times << " "
           // <<s_quick.count()/times<<" "
            <<merge.count()/times<<" "
-           <<heap.count()/times<<std::endl;
+           <<heap.count()/times<<" "
+           <<hybrid.count()/times<<std::endl;
 
         delete[] arr;
         delete [ ]arr_i;
         delete [ ]arr_q;
         delete [] arr_m;
+        delete [ ]arr_b;
+       delete [] arr_h;
 
     }
 
