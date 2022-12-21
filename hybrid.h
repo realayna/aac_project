@@ -7,7 +7,7 @@
 void hybridsort(int *arr, int f, int l)
 {
     
-    if (l - f  < 45)
+    if (l - f  < 65)
     {
         insert_sort(arr, l, f);
        
