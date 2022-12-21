@@ -3,17 +3,17 @@
 
 #include <iostream>
 
-void insert_sort(int *arr, int len)
+void insert_sort(int *arr, int len, int s = 0)
 {
     int now;
     int j;
 
-    for (auto i =1; i<len; i++)
+    for (auto i=s + 1; i<=len; i++)
     {
         int now = arr[i];
         int j = i-1;
 
-        while ( j>= 0 && now< arr[j])
+        while ( j>= s && now< arr[j])
         {
             arr[j+1] = arr[j];
             j = j-1;
